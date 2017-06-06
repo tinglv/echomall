@@ -14,7 +14,15 @@ public class UserServiceImpl implements IUserService {
 
     @Overide
     public ServerResponse<User> login(String username, String password){
-        int response = useMapper.checkUsername(username);
+        int resultCount = useMapper.checkUsername(username);
+        if(resultCount == 0){
+            return ServerResponse.creatByErrorMessage("用户不存在");
+        }
+
+        //todo password MD5
+
+        User user = useMapper.selectLogin(username,password);
+        if()
 
         return null;
     }
